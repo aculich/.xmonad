@@ -1,4 +1,4 @@
-import XMonad
+import XMonad                          hiding ((|||))
 import XMonad.Actions.Commands                (screenCommands, workspaceCommands)
 import XMonad.Actions.CycleWS                 (nextScreen)
 import XMonad.Actions.TopicSpace
@@ -13,8 +13,8 @@ import XMonad.Hooks.WorkspaceByPos
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Grid
 import XMonad.Layout.IM
-import XMonad.Layout.LayoutCombinators        ((****||*))
-import XMonad.Layout.LayoutCombinators hiding ((|||))
+import XMonad.Layout.Tabbed
+import XMonad.Layout.LayoutCombinators        ((|||), (****||*), JumpToLayout(..))
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Master                   (mastered)
 import XMonad.Layout.Maximize                 (maximize, maximizeRestore)
@@ -204,6 +204,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask,      xK_f            ), sendMessage ToggleStruts)
 
     -- screens
+  , ((casmMask,     xK_f            ), sendMessage $ JumpToLayout "Full")  -- jump directly to the Full layout
   , ((modMask,      xK_h            ), nextScreen)
 
   , ((casMask,      xK_Return       ), runOrRaisePrompt defaultXPConfig)
