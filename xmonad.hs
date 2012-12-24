@@ -5,6 +5,7 @@ import XMonad.Actions.TopicSpace
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowBringer           (bringMenu, gotoMenu)
 import XMonad.Config.Gnome                    (gnomeConfig)
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers             (doRectFloat, currentWs)
@@ -316,7 +317,7 @@ myLayout = myLayoutModifiers (masteredLayout ||| Full ||| gimpLayout)
 
 myEventHook = fullscreenEventHook
 
-myLogHook = updatePointer (Relative 0.8 0.6)
+myLogHook = updatePointer (Relative 0.8 0.6) >> dynamicLog
 
 myFloats :: ManageHook
 myFloats = composeAll
@@ -344,18 +345,15 @@ myShifts = composeAll
 
 insertAfterMaster = insertPosition Below Newer
 myManageHook :: ManageHook
-myManageHook = insertAfterMaster <+>
-               fullscreenManageHook <+>
+myManageHook = fullscreenManageHook <+>
+               insertAfterMaster <+>
                myShifts <+>
                mySinks <+>
                myFloats <+>
                workspaceByPos <+>
                manageHook gnomeConfig
 
-main = do
-  checkTopicConfig myTopics myTopicConfig
-  replace
-  xmonad $ gnomeConfig {
+myConfig = gnomeConfig {
   layoutHook   = myLayout
   , modMask    = casMask
   , keys       = myKeys
@@ -364,3 +362,8 @@ main = do
   , manageHook = myManageHook
   , terminal   = "x-terminal-emulator"
   }
+
+main = do
+  checkTopicConfig myTopics myTopicConfig
+  replace
+  xmonad =<< xmobar myConfig
