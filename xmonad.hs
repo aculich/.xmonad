@@ -38,6 +38,7 @@ import System.Exit
 
 import Data.Ratio                             ((%))
 import Data.Maybe
+import Data.Monoid
 import Control.Applicative                    ((<$>))
 import Control.Monad.Error                    ((<=<),guard,lift,runErrorT,throwError)
 
