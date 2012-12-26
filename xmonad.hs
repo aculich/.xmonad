@@ -202,9 +202,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- layouts
   , ((casmMask,     xK_space        ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
   , ((modMask,      xK_f            ), sendMessage ToggleStruts)
+  , ((casmMask,     xK_f            ), sendMessage $ JumpToLayout "Full")  -- jump directly to the Full layout
 
     -- screens
-  , ((casmMask,     xK_f            ), sendMessage $ JumpToLayout "Full")  -- jump directly to the Full layout
   , ((modMask,      xK_h            ), nextScreen)
 
   , ((casMask,      xK_Return       ), runOrRaisePrompt defaultXPConfig)
