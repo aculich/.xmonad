@@ -338,6 +338,8 @@ mySinks = composeAll
           , className  =? "rdesktop"          --> doSink
           , className  =? "image"             --> doSink
           , className  =? "Image"             --> doSink
+          , className  =? "Apport-gtk"        --> doSink
+          , className  =? "Pidgin"            --> doSink
           ]
 
 myShifts :: ManageHook
