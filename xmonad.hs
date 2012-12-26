@@ -327,6 +327,7 @@ myFloats = composeAll
            , className =? "Xephyr"            --> doFloat
            , className =? "Unity-2d-panel"    --> doIgnore
            , className =? "Unity-2d-launcher" --> doFloat
+           , resource  =? "Do"                --> doIgnore
            ]
 
 doSink :: ManageHook
