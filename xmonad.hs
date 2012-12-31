@@ -336,12 +336,17 @@ doSink = ask >>= doF . sink
 
 mySinks :: ManageHook
 mySinks = composeAll
-          [ className  =? "Tsclient"          --> doSink
-          , className  =? "rdesktop"          --> doSink
-          , className  =? "image"             --> doSink
-          , className  =? "Image"             --> doSink
-          , className  =? "Apport-gtk"        --> doSink
-          , className  =? "Pidgin"            --> doSink
+          [ className  =? "Tsclient"                --> doSink
+          , className  =? "rdesktop"                --> doSink
+          , className  =? "image"                   --> doSink
+          , className  =? "Image"                   --> doSink
+          , className  =? "Apport-gtk"              --> doSink
+          , className  =? "Pidgin"                  --> doSink
+          , className  =? "Nm-applet"               --> doSink
+          , className  =? "Wireshark"               --> doSink
+          , className  =? "Gnome-control-center"    --> doSink
+          , className  =? "Gnome-terminal"          --> doSink
+          , className  =? "Gnome-language-selector" --> doSink
           ]
 
 myShifts :: ManageHook
